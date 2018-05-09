@@ -16,7 +16,7 @@ public class Employee {
     private String gender;
     private Integer salary;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "companyId")
     private Company company;
 
@@ -38,7 +38,7 @@ public class Employee {
         this.salary = salary;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
