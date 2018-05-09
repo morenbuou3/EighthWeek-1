@@ -1,6 +1,8 @@
 package com.example.employee.restfulapi.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -13,28 +15,19 @@ public class Employee {
     private Integer age;
     private String gender;
     private Integer salary;
-    private Long companyId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "companyId")
     private Company company;
 
     public Employee() {
     }
 
-    public Employee(String name, Integer age, String gender, Integer salary, Long companyId) {
+    public Employee(String name, Integer age, String gender, Integer salary) {
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.salary = salary;
-        this.companyId = companyId;
-    }
-
-    public Long getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
     }
 
     public Integer getSalary() {
@@ -75,6 +68,7 @@ public class Employee {
         this.gender = gender;
     }
 
+    @JsonIgnore
     public Company getCompany() {
         return company;
     }
