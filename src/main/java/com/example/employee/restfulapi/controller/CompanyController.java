@@ -21,7 +21,6 @@ public class CompanyController {
     //在此处完成Company API
     @GetMapping
     public List<Company> getCompanyList() {
-        List<Company> c = companyRepository.findAll();
         return companyRepository.findAll();
     }
 
